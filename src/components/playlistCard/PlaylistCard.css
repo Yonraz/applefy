@@ -1,0 +1,19 @@
+.playlist-card {
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin: .5rem;
+    width: 400px;
+}
+.playlist-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .2em;
+}
+.playlist-card-header img {
+    border-radius: 3px;
+}
+.playlist-card-body {
+    margin:  0 1em;
+    text-align: right;
+}

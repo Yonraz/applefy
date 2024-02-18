@@ -1,0 +1,20 @@
+form {
+    font-size: x-large;
+    text-align: left;
+}
+
+.text-input {
+    font-size: x-large;
+    width: 450px;
+}
+
+.text-label {
+    margin-right: .5em;
+}
+textarea {
+    height: 200px;
+}
+
+button {
+    margin-right: 1em;
+}
