@@ -1,0 +1,14 @@
+.track-list-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-list-item-container h3,
+p {
+  margin: 0;
+}
+
+button {
+  margin: 0;
+}
