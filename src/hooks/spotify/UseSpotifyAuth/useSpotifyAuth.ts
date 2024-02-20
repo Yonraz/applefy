@@ -22,7 +22,7 @@ export default function useSpotifyAuth() {
   }, [codeChallenge]);
 
   const clientId = "f40436f8ac9f46118fa58893beb1514b";
-  const redirectUri = "http://localhost:5173/";
+  const redirectUri = "https://main--spottiple.netlify.app/";
   const authUrl = new URL("https://accounts.spotify.com/authorize");
   const scope =
     "user-read-private user-read-email playlist-modify-public playlist-modify-private";
