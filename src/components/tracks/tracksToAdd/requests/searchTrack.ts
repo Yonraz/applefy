@@ -39,6 +39,7 @@ export async function searchItem(trackData: TrackData) {
     return data.tracks.items[0];
   } catch (e) {
     console.error(e);
+    return null;
   }
 }
 

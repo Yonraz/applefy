@@ -2,13 +2,16 @@ import { useState } from "react";
 import { trackFinderType } from "../tracksToAdd/TracksToAdd";
 import { v4 } from "uuid";
 import "./AddTracksForm.css";
+import { NavigateFunction } from "react-router-dom";
 
 interface tracksformProps {
   addTrack: (value: trackFinderType) => void;
+  navigate: NavigateFunction;
+  playlistId: string;
 }
 
 export default function AddTracksForm(props: tracksformProps) {
-  const { addTrack } = props;
+  const { addTrack, navigate, playlistId } = props;
   const [track, setTrack] = useState("");
   const [album, setAlbum] = useState("");
   const [artist, setArtist] = useState("");
@@ -65,7 +68,13 @@ export default function AddTracksForm(props: tracksformProps) {
           />
         </div>
         <button className="submit-btn" type="submit">
-          Add track
+          Add
+        </button>
+        <button
+          className="submit-btn"
+          onClick={() => navigate(`/playlist/${playlistId}`)}
+        >
+          Back to playlist
         </button>
       </form>
     </>

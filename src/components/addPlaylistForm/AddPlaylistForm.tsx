@@ -12,10 +12,16 @@ export default function AddPlaylistForm() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    navigate("/awaitadd");
+    requestAdd();
+  }
+
+  const requestAdd = async () => {
     const formData = { name, description, isPublic };
     if (userId === undefined) return;
-    sendPlaylist(userId, formData);
-  }
+    await sendPlaylist(userId, formData);
+    navigate("/playlists");
+  };
 
   function handleBack(): void {
     navigate("/playlists");
@@ -55,8 +61,12 @@ export default function AddPlaylistForm() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <button type="submit">Add playlist</button>
-        <button onClick={handleBack}>Back</button>
+        <div className="btns">
+          <button className="add-btn" type="submit">
+            Add playlist
+          </button>
+          <button onClick={handleBack}>Back</button>
+        </div>
       </form>
     </>
   );

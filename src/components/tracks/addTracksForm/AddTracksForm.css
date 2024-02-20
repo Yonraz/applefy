@@ -5,7 +5,7 @@ form {
 
 .text-input {
   font-size: x-large;
-  width: 450px;
+  width: 100%;
 }
 
 .text-label {
@@ -18,6 +18,7 @@ textarea {
 .submit-btn {
   margin-right: 1em;
   margin-top: 1em;
+  font-size: large;
 }
 
 .optional {
@@ -28,4 +29,16 @@ textarea {
 .optional > span {
   font-size: 0.9rem;
   color: rgb(180, 180, 180);
+}
+@media only screen and (max-width: 600px) {
+  .text-input {
+    font-size: x-large;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 570px) {
+  .text-input {
+    font-size: x-large;
+    width: 500px;
+  }
 }

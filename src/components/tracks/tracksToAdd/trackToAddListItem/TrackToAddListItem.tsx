@@ -11,7 +11,7 @@ export default function TrackToAddListItem(props: props) {
   return (
     <>
       <div className="track-list-item-container">
-        <img src={track.img ? track.img : loader} style={{ width: "140px" }} />
+        <img src={track.img ? track.img : loader} />
         <div className="track-list-item-details-container">
           <h3>{track.data.name}</h3>
           <div className="">
@@ -19,7 +19,7 @@ export default function TrackToAddListItem(props: props) {
             {track.data.artist !== "" && <p>Artist: {track.data.artist} </p>}
           </div>
         </div>
-        <p>found: {!track.found ? "❌" : "✅"}</p>
+        <p>{!track.found ? "❌" : "✅"}</p>
         <button onClick={() => handleRemove(track.id)}>-</button>
       </div>
     </>

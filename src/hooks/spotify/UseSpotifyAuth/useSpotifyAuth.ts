@@ -83,6 +83,10 @@ export const getToken = async (code: string) => {
     const data = await response.json();
     localStorage.setItem("access_token", data.access_token);
     localStorage.setItem("refresh_token", data.refresh_token);
+    localStorage.setItem(
+      "spotify_token_expires_at",
+      (Date.now() + data.expires_in * 1000).toString()
+    );
     return data.access_token !== undefined;
   } catch (e) {
     console.log(e);

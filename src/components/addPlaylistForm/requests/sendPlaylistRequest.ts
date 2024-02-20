@@ -20,10 +20,6 @@ export async function sendPlaylist(
       body,
     });
     if (!response.ok) throw new Error("failed to create playlist");
-    const data = await response.json();
-    console.log(data);
-    console.log(data);
-    window.location.reload();
     return true;
   } catch (e) {
     console.log(e);

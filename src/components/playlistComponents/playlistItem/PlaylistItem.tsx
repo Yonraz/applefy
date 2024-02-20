@@ -22,21 +22,28 @@ export default function PlaylistItem() {
     navigate(`/addtracks/${playlistId}`);
   }
 
+  function handleReturn(): void {
+    navigate(`/playlists`);
+  }
+
   return (
     <>
-      <button onClick={handleAddTracks}>Add Tracks</button>
       {isLoading && <h1>Loading...</h1>}
       {playlist && (
         <div>
           <h1>{playlist.name}</h1>
+          <div className="buttons">
+            <button onClick={handleAddTracks}>Add Tracks</button>
+            <button onClick={handleReturn}>Return to playlists</button>
+          </div>
           <div className="tracks-container">
             {playlist.tracks.items &&
               playlist.tracks.items.map((track) => (
-                <div key={track.track.id} className="track-item">
-                  <img
-                    src={track.track.album.images[0].url}
-                    style={{ width: track.track.album.images[0].width / 2 }}
-                  />
+                <div
+                  key={track.track.id}
+                  className="track-item card-background"
+                >
+                  <img src={track.track.album.images[0].url} />
                   <h2>{track.track.name}</h2>
                   <p>Album: {track.track.album.name}</p>
                   <p>

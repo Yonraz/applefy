@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { SimplifiedPlaylistObjectType } from "../../types/playlistTypes/playlistTypes";
+import { SimplifiedPlaylistObjectType } from "../../../types/playlistTypes/playlistTypes";
 import "./PlaylistCard.css";
 export default function PlaylistCard(props: {
   playlist: SimplifiedPlaylistObjectType;
@@ -13,7 +13,7 @@ export default function PlaylistCard(props: {
   return (
     <>
       <div
-        className="playlist-card"
+        className="playlist-card card-background"
         onClick={() => navigate(`/playlist/${playlist.id}`)}
       >
         <div className="playlist-card-header">

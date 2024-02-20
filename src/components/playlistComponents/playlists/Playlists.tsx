@@ -2,34 +2,58 @@ import { useEffect, useState } from "react";
 import { SimplifiedPlaylistObjectType } from "../../../types/playlistTypes/playlistTypes";
 import PlaylistCard from "../playlistCard/PlaylistCard";
 import "./Playlists.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useResetToken from "../../../hooks/spotify/useResetToken/useResetToken";
 
 export default function Playlists() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [tokenExpired, checkAndRefreshToken] = useResetToken();
   const [playlists, setPlaylists] = useState<SimplifiedPlaylistObjectType[]>();
   const [userId, setUserId] = useState<string>("");
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
+  const { error } = useParams();
   async function getPlaylists() {
+    if (tokenExpired) checkAndRefreshToken();
     const playlists: SimplifiedPlaylistObjectType[] =
       await fetchUserPlaylists();
     setPlaylists(playlists);
   }
   useEffect(() => {
+    if (error) {
+      setShowError(true);
+    }
     getPlaylists();
   }, []);
   useEffect(() => {
     if (!playlists || userId !== "") return;
     setUserId(playlists[0].owner.id);
   }, [playlists]);
+  function handleErrorDismiss(): void {
+    setShowError(false);
+  }
+
   return (
     <>
-      <div>
-        <button onClick={() => navigate(`/create/${userId}`)}>
-          Create new playlist
-        </button>
-        <h1>Your Playlists:</h1>
-        <div className="user-playlists">
-          {playlists &&
-            playlists.map((x) => <PlaylistCard playlist={x} key={x.id} />)}
+      <div className="container">
+        {showError && (
+          <div className="error-div">
+            <button onClick={handleErrorDismiss}>dismiss</button>
+            <p>{error}</p>
+          </div>
+        )}
+        <h2>Your Playlists:</h2>
+        <div className="justify-left">
+          <button
+            className="create-new-button"
+            onClick={() => navigate(`/create/${userId}`)}
+          >
+            <span className="large-screen-text">Create new playlist</span>
+          </button>
+          <div className="user-playlists">
+            {playlists &&
+              playlists.map((x) => <PlaylistCard playlist={x} key={x.id} />)}
+          </div>
         </div>
       </div>
     </>

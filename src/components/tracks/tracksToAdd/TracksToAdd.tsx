@@ -1,12 +1,14 @@
 import { useState } from "react";
 import AddTracksForm from "../addTracksForm/AddTracksForm";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TrackToAddListItem from "./trackToAddListItem/TrackToAddListItem";
 import "./TracksToAdd.css";
 import { searchItem } from "./requests/searchTrack";
 import { v4 } from "uuid";
-import { TrackObjectType } from "../../../types/trackTypes/trackTypes";
 import { addItemsToPlaylistById } from "./requests/addItemsToPlaylist";
+import { getMatchAlbum, getMatchArtist, getMatchName } from "./helpers/helpers";
+import useResetToken from "../../../hooks/spotify/useResetToken/useResetToken";
+import imageNotFound from "../../../assets/images/image-not-found.png";
 export interface trackFinderType {
   data: { name: string; album: string; artist: string };
   found: boolean;
@@ -15,46 +17,16 @@ export interface trackFinderType {
   uri: string | null;
 }
 
-function getMatchAlbum(
-  track: trackFinderType,
-  data: TrackObjectType,
-  album: string
-) {
-  return (
-    track.data.album === "" ||
-    data.album.name.trim().toLowerCase() === album.trim().toLowerCase()
-  );
-}
-
-function getMatchName(track: trackFinderType, data: TrackObjectType) {
-  return data.name
-    .trim()
-    .toLowerCase()
-    .includes(track.data.name.trim().toLowerCase());
-}
-function getMatchArtist(
-  track: trackFinderType,
-  data: TrackObjectType,
-  artist: string
-) {
-  return (
-    track.data.artist === "" ||
-    data.artists.find((a) =>
-      a.name
-        .trim()
-        .toLocaleLowerCase()
-        .includes(artist.trim().toLocaleLowerCase())
-    )
-  );
-}
-
 export default function TracksToAdd() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [tokenExpired, checkAndRefreshToken] = useResetToken();
   const [tracks, setTracks] = useState<trackFinderType[]>([]);
   const { playlistId } = useParams();
   function handleAddTrack(track: trackFinderType) {
     setTracks((prev) => [...prev, track]);
     getTrack(track);
   }
+  const navigate = useNavigate();
 
   async function getTrack(track: trackFinderType) {
     let { name, album, artist } = track.data;
@@ -68,21 +40,31 @@ export default function TracksToAdd() {
     });
     if (data) {
       setTracks((prev) =>
-        prev.map((track) => {
-          const matchName = getMatchName(track, data);
-          const matchAlbum = getMatchAlbum(track, data, album);
-          const matchArtist = getMatchArtist(track, data, artist);
+        prev.map((currentTrack) => {
+          const matchName = getMatchName(currentTrack, data);
+          const matchAlbum = getMatchAlbum(currentTrack, data, album);
+          const matchArtist = getMatchArtist(currentTrack, data, artist);
           if (matchName && matchAlbum && matchArtist) {
-            track.id = data.id;
-            track.found = true;
-            track.img = data.album.images[0].url;
-            track.uri = data.uri;
+            currentTrack.id = data.id;
+            currentTrack.found = true;
+            currentTrack.img = data.album.images[0].url;
+            currentTrack.uri = data.uri;
             if (data.album.name) {
-              track.data.album = data.album.name;
+              currentTrack.data.album = data.album.name;
             }
             if (data.artists[0]) {
-              track.data.artist = data.artists[0].name;
+              currentTrack.data.artist = data.artists[0].name;
             }
+          }
+          return currentTrack;
+        })
+      );
+    } else {
+      setTracks((prev) =>
+        prev.map((currentTrack) => {
+          if (currentTrack.data.name === name) {
+            if (currentTrack.found) return track;
+            currentTrack.img = imageNotFound;
           }
           return track;
         })
@@ -92,6 +74,7 @@ export default function TracksToAdd() {
 
   async function addItemsToPlaylist() {
     try {
+      if (tokenExpired) checkAndRefreshToken();
       const trackUris = tracks.map((track) => track.uri);
       let length = trackUris.length;
       let index = 0;
@@ -113,12 +96,15 @@ export default function TracksToAdd() {
       if (playlistId === undefined) return;
       const response = await addItemsToPlaylistById(playlistId, uris);
       if (!response) throw new Error("operation failed");
+      navigate(`/playlist/${playlistId}`);
     } catch (e) {
       console.error(e);
+      navigate(`/playlists/${e}`);
     }
   }
 
   function handleAddTracks() {
+    navigate("/awaitadd");
     addItemsToPlaylist();
   }
 
@@ -127,14 +113,21 @@ export default function TracksToAdd() {
   }
   return (
     <>
-      <AddTracksForm addTrack={handleAddTrack} />
+      <AddTracksForm
+        addTrack={handleAddTrack}
+        navigate={navigate}
+        playlistId={playlistId === undefined ? "" : playlistId}
+      />
       {tracks.length > 0 &&
         tracks.map((track) => (
           <div key={v4()} className="tracklist-item">
             <TrackToAddListItem track={track} handleRemove={handleRemove} />
           </div>
         ))}
-      <button onClick={handleAddTracks}>Add</button>
+
+      {tracks.length > 0 && (
+        <button onClick={handleAddTracks}>Add tracks to spotify</button>
+      )}
     </>
   );
 }

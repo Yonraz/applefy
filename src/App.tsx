@@ -11,21 +11,29 @@ import Playlists from "./components/playlistComponents/playlists/Playlists";
 import Main from "./components/main/Main";
 import PlaylistItem from "./components/playlistComponents/playlistItem/PlaylistItem";
 import TracksToAdd from "./components/tracks/tracksToAdd/TracksToAdd";
+import AwaitAddLoadingScreen from "./components/loadingScreen/AwaitAddLoadingScreen";
+import Header from "./components/layout/Header";
 
 function App() {
   return (
     <>
       <Router>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" Component={Main} />
-            <Route path="/playlists" Component={Playlists} />
-            <Route path="/create/:userId" Component={AddPlaylistForm} />
-            <Route path="/playlist/:playlistId" Component={PlaylistItem} />
-            <Route path="/addtracks/:playlistId" Component={TracksToAdd} />
-            <Route path="*" element={<Navigate to={"/"} />} />
-          </Routes>
-        </AuthProvider>
+        <header>
+          <Header />
+        </header>
+        <section className="body">
+          <AuthProvider>
+            <Routes>
+              <Route path="/" Component={Main} />
+              <Route path="/playlists" Component={Playlists} />
+              <Route path="/create/:userId" Component={AddPlaylistForm} />
+              <Route path="/playlist/:playlistId" Component={PlaylistItem} />
+              <Route path="/addtracks/:playlistId" Component={TracksToAdd} />
+              <Route path="/awaitadd" Component={AwaitAddLoadingScreen} />
+              <Route path="*" element={<Navigate to={"/"} />} />
+            </Routes>
+          </AuthProvider>
+        </section>
       </Router>
     </>
   );
