@@ -1,8 +1,27 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 320px) {
   .user-playlists {
+    width: 300px;
     display: block;
   }
+  .justify-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
+@media only screen and (min-width: 768px) {
+  .user-playlists {
+    display: block;
+    width: 280px;
+  }
+  .justify-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .user-playlists {
     display: grid;
@@ -17,6 +36,9 @@
   }
   .large-screen-text {
     display: inline;
+  }
+  .justify-center {
+    display: block;
   }
 }
 @media only screen and (min-width: 1320px) {

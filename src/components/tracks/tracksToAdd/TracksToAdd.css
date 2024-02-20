@@ -4,3 +4,15 @@
 .add-btn {
   background-color: rgb(68, 98, 145);
 }
+@media only screen and (max-width: 420px) {
+  .text-input {
+    font-size: x-large;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 420px) {
+  .text-input {
+    font-size: x-large;
+    width: 400px;
+  }
+}

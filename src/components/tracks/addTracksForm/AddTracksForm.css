@@ -30,15 +30,15 @@ textarea {
   font-size: 0.9rem;
   color: rgb(180, 180, 180);
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 420px) {
   .text-input {
     font-size: x-large;
     width: 100%;
   }
 }
-@media only screen and (min-width: 570px) {
+@media only screen and (min-width: 420px) {
   .text-input {
     font-size: x-large;
-    width: 500px;
+    width: 400px;
   }
 }

@@ -22,3 +22,23 @@ button {
 img {
   width: 100px;
 }
+@media only screen and (max-width: 420px) {
+  .track-list-item-container {
+    font-size: small;
+    width: 100%;
+  }
+  .remove-btn {
+    width: min-content;
+    font-weight: 200;
+    font-size: small;
+    padding: 0 0.5em;
+    padding-bottom: 0.2em;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 420px) {
+  .text-input {
+    font-size: x-large;
+    width: 400px;
+  }
+}

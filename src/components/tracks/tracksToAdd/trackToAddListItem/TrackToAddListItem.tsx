@@ -20,7 +20,7 @@ export default function TrackToAddListItem(props: props) {
           </div>
         </div>
         <p>{!track.found ? "❌" : "✅"}</p>
-        <button onClick={() => handleRemove(track.id)}>-</button>
+        <button className="remove-btn" onClick={() => handleRemove(track.id)}>x</button>
       </div>
     </>
   );

@@ -43,13 +43,15 @@ export default function Playlists() {
           </div>
         )}
         <h2>Your Playlists:</h2>
-        <div className="justify-left">
-          <button
-            className="create-new-button"
-            onClick={() => navigate(`/create/${userId}`)}
-          >
-            <span className="large-screen-text">Create new playlist</span>
-          </button>
+        <div className="justify-center">
+          <div className="justify-left">
+            <button
+              className="create-new-button"
+              onClick={() => navigate(`/create/${userId}`)}
+            >
+              <span className="large-screen-text">Create new playlist</span>
+            </button>
+          </div>
           <div className="user-playlists">
             {playlists &&
               playlists.map((x) => <PlaylistCard playlist={x} key={x.id} />)}

@@ -30,7 +30,7 @@ export default function PlaylistItem() {
     <>
       {isLoading && <h1>Loading...</h1>}
       {playlist && (
-        <div>
+        <div className="justify-center">
           <h1>{playlist.name}</h1>
           <div className="buttons">
             <button onClick={handleAddTracks}>Add Tracks</button>
