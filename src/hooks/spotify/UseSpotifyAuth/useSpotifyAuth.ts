@@ -61,7 +61,7 @@ export const getToken = async (code: string) => {
     console.log("getting token");
     const url = "https://accounts.spotify.com/api/token";
     const clientId = "f40436f8ac9f46118fa58893beb1514b";
-    const redirectUri = "http://localhost:5173/";
+    const redirectUri = "https://main--spottiple.netlify.app/";
     const codeVerifier = localStorage.getItem("code_verifier");
     if (!codeVerifier) throw new Error("verifier doesnt exist");
     const payload = {
