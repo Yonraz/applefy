@@ -126,7 +126,9 @@ export default function TracksToAdd() {
         ))}
 
       {tracks.length > 0 && (
-        <button onClick={handleAddTracks}>Add tracks to spotify</button>
+        <button className="add-btn" onClick={handleAddTracks}>
+          Add tracks to spotify
+        </button>
       )}
     </>
   );

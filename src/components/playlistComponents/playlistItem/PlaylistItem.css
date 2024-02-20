@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
 }
-img {
+.track-item img {
   border-radius: 10px;
   width: 280px;
 }
