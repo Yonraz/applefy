@@ -10,11 +10,11 @@ This app is a utility app to transfer apple music playlists to spotify
 
 -create new playlist
 
+-allow adding tracks to playlists
+
 ## Main Goals:
 
 -handle security properly
-
--allow adding tracks to playlists
 
 -connect to user's apple music account
 
