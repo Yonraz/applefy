@@ -1,6 +1,4 @@
-import {
-  PlaylistResponseObject,
-} from "../../../types/playlistTypes/playlistTypes";
+import { PlaylistResponseObject } from "../../../../types/playlistTypes/playlistTypes";
 
 export const fetchPlaylistById = async (playlistId: string) => {
   try {
