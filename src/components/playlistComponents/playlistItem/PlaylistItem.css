@@ -1,0 +1,11 @@
+.track-item {
+  border: 1px solid white;
+  width: 320px;
+  padding: 1em 2em;
+  border-radius: 0.2em;
+  margin: 0.5em;
+}
+.tracks-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}

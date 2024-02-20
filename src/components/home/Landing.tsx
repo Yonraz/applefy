@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import useSpotifyAuth from "../../hooks/UseSpotifyAuth/useSpotifyAuth";
+import useSpotifyAuth from "../../hooks/spotify/UseSpotifyAuth/useSpotifyAuth";
 import { AuthContext } from "../../state/authContext/AuthContext";
 
 export default function Landing() {

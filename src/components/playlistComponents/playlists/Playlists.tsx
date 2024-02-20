@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SimplifiedPlaylistObjectType } from "../../types/playlistTypes/playlistTypes";
+import { SimplifiedPlaylistObjectType } from "../../../types/playlistTypes/playlistTypes";
 import PlaylistCard from "../playlistCard/PlaylistCard";
 import "./Playlists.css";
 import { useNavigate } from "react-router-dom";

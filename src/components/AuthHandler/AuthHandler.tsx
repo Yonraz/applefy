@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getToken } from "../../hooks/UseSpotifyAuth/useSpotifyAuth";
+import { getToken } from "../../hooks/spotify/UseSpotifyAuth/useSpotifyAuth";
 import { useNavigate } from "react-router-dom";
 import Landing from "../home/Landing";
 

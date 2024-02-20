@@ -1,0 +1,31 @@
+form {
+  font-size: x-large;
+  text-align: left;
+}
+
+.text-input {
+  font-size: x-large;
+  width: 450px;
+}
+
+.text-label {
+  margin-right: 0.5em;
+}
+textarea {
+  height: 200px;
+}
+
+.submit-btn {
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+.optional {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.optional > span {
+  font-size: 0.9rem;
+  color: rgb(180, 180, 180);
+}

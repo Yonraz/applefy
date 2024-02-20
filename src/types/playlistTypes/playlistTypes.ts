@@ -1,3 +1,5 @@
+import { TrackObjectType } from "../trackTypes/trackTypes";
+
 export interface ImageObjectType {
   url: string;
   height: number;
@@ -30,4 +32,36 @@ export interface SimplifiedPlaylistObjectType {
   type: string;
   uri: string;
   owner: OwnerObjectType;
+}
+
+export interface PlaylistTracksObjectType {
+  href: string;
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+  items: PlaylistTrackObjectType[];
+}
+export interface PlaylistTrackObjectType {
+  added_at: string;
+  track: TrackObjectType;
+}
+
+export interface PlaylistResponseObject {
+  collaborative: boolean;
+  description: string;
+  external_urls: {
+    spotify: string; //spotify url for the playlist
+  };
+  followers: { href: string; followers: number };
+  id: string;
+  images: ImageObjectType[];
+  name: string;
+  owner: OwnerObjectType;
+  public: boolean;
+  snapshot_id: string;
+  tracks: PlaylistTracksObjectType;
+  type: string;
+  uri: string;
 }
