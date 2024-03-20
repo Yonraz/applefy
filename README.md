@@ -2,6 +2,8 @@
 
 This app is a utility app to transfer apple music playlists to spotify
 
+# Due to spotify and apple music api restrictions this only works with specific authorization of client's IP address.
+
 ## Current working features:
 
 -connect to user's spotify account
@@ -19,3 +21,4 @@ This app is a utility app to transfer apple music playlists to spotify
 -connect to user's apple music account
 
 -automatically add tracks from am to spotify
+
