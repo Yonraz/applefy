@@ -19,5 +19,3 @@ This app is a utility app to transfer apple music playlists to spotify
 -connect to user's apple music account
 
 -automatically add tracks from am to spotify
-
--handle errors gracefully
